@@ -1,4 +1,6 @@
 import { useForm } from "react-hook-form";
+import { useRecoilState, useRecoilValue } from "recoil";
+import { TodoState } from "../GlobalConfig";
 
 interface IForm {
     todo: string;
@@ -6,9 +8,17 @@ interface IForm {
 
 function TodoList() {
     const { register, setValue, handleSubmit } = useForm<IForm>();
+    const [allTodo, setAllTodo] = useRecoilState(TodoState);
 
     function handleValid(data: IForm) {
-        console.log("add todo is ", data.todo);
+        setAllTodo((oldTodo) => [
+            ...oldTodo,
+            {
+                text: data.todo,
+                category: "Todo",
+                id: Date.now(),
+            },
+        ]);
         setValue("todo", "");
     }
 
@@ -27,7 +37,11 @@ function TodoList() {
                 <button>Add</button>
             </form>
 
-            <ul></ul>
+            <ul>
+                {allTodo.map((todo) => (
+                    <li key={todo.id}>{todo.text}</li>
+                ))}
+            </ul>
         </div>
     );
 }
