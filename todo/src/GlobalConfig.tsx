@@ -1,6 +1,10 @@
 import { atom } from "recoil";
 
-interface ITodo {
+export interface IForm {
+    todo: string;
+}
+
+export interface ITodo {
     text: string;
     id: number;
     category: "Todo" | "Doing" | "Done";
