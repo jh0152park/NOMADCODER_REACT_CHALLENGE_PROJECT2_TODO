@@ -1,14 +1,30 @@
 import { useRecoilState, useRecoilValue } from "recoil";
-import { TodoSelector, TodoState } from "../GlobalConfig";
+import {
+    Categories,
+    CategoryState,
+    TodoSelector,
+    TodoState,
+} from "../GlobalConfig";
 import CreateTodo from "./CreateTodo";
 import Todo from "./Todo";
 
 function TodoList() {
     const [todo, doing, done] = useRecoilValue(TodoSelector);
+    const [category, setCategory] = useRecoilState(CategoryState);
+
+    function onInput(event: React.FormEvent<HTMLSelectElement>) {
+        setCategory(event.currentTarget.value as any);
+    }
 
     return (
         <div>
             <h1>To Dos</h1>
+            <br></br>
+            <select value={category} onInput={onInput}>
+                <option value={Categories.Todo}>Todo</option>
+                <option value={Categories.Doing}>Doing</option>
+                <option value={Categories.Done}>Done</option>
+            </select>
             <CreateTodo />
             <hr></hr>
 

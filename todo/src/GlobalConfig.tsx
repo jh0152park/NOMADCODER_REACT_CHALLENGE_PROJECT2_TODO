@@ -1,5 +1,11 @@
 import { atom, selector } from "recoil";
 
+export enum Categories {
+    "Todo",
+    "Doing",
+    "Done",
+}
+
 export interface IForm {
     todo: string;
 }
@@ -7,8 +13,13 @@ export interface IForm {
 export interface ITodo {
     text: string;
     id: number;
-    category: "Todo" | "Doing" | "Done";
+    category: Categories;
 }
+
+export const CategoryState = atom<Categories>({
+    key: "category",
+    default: Categories.Todo,
+});
 
 export const TodoState = atom<ITodo[]>({
     key: "todo",
@@ -20,9 +31,9 @@ export const TodoSelector = selector({
     get: ({ get }) => {
         const allTodo = get(TodoState);
         return [
-            allTodo.filter((todo) => todo.category === "Todo"),
-            allTodo.filter((todo) => todo.category === "Doing"),
-            allTodo.filter((todo) => todo.category === "Done"),
+            allTodo.filter((todo) => todo.category === Categories.Todo),
+            allTodo.filter((todo) => todo.category === Categories.Doing),
+            allTodo.filter((todo) => todo.category === Categories.Done),
         ];
     },
 });

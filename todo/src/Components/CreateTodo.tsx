@@ -1,17 +1,18 @@
 import { useForm } from "react-hook-form";
-import { IForm, TodoState } from "../GlobalConfig";
-import { useRecoilState } from "recoil";
+import { CategoryState, IForm, TodoState } from "../GlobalConfig";
+import { useRecoilState, useRecoilValue } from "recoil";
 
 function CreateTodo() {
     const { register, setValue, handleSubmit } = useForm<IForm>();
     const [allTodo, setAllTodo] = useRecoilState(TodoState);
+    const category = useRecoilValue(CategoryState);
 
     function handleValid(data: IForm) {
         setAllTodo((oldTodo) => [
             ...oldTodo,
             {
                 text: data.todo,
-                category: "Todo",
+                category: category,
                 id: Date.now(),
             },
         ]);
