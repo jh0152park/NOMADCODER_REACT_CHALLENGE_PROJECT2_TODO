@@ -1,5 +1,5 @@
 import { useRecoilState, useSetRecoilState } from "recoil";
-import { ITodo, TodoState } from "../GlobalConfig";
+import { Categories, ITodo, TodoState } from "../GlobalConfig";
 
 function Todo({ text, category, id }: ITodo) {
     const [allTodo, setAllTodo] = useRecoilState(TodoState);
@@ -20,16 +20,20 @@ function Todo({ text, category, id }: ITodo) {
     return (
         <li>
             <span>{text}</span>
-            {category !== "Todo" && (
-                <button onClick={() => onButtonClick("Todo", id)}>Todo</button>
+            {category !== Categories.Todo && (
+                <button onClick={() => onButtonClick(Categories.Todo, id)}>
+                    Todo
+                </button>
             )}
-            {category !== "Doing" && (
-                <button onClick={() => onButtonClick("Doing", id)}>
+            {category !== Categories.Doing && (
+                <button onClick={() => onButtonClick(Categories.Doing, id)}>
                     Doing
                 </button>
             )}
-            {category !== "Done" && (
-                <button onClick={() => onButtonClick("Done", id)}>Done</button>
+            {category !== Categories.Done && (
+                <button onClick={() => onButtonClick(Categories.Done, id)}>
+                    Done
+                </button>
             )}
         </li>
     );
