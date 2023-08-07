@@ -1,7 +1,6 @@
 import { ThemeProvider, createGlobalStyle } from "styled-components";
-import "./App.css";
 import { DarkMode } from "./Thema";
-import TodoList from "./TodoList";
+import TodoList from "./Components/TodoList";
 
 const GlobalStyle = createGlobalStyle`
   /* http://meyerweb.com/eric/tools/css/reset/ 
