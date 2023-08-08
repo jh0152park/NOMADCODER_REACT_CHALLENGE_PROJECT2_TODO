@@ -6,4 +6,28 @@ export const Item = styled.li`
     margin: 7px;
     color: rgba(0, 0, 0, 0.7);
     font-weight: 500;
+    display: flex;
+    position: relative;
+`;
+
+export const Move = styled.div`
+    background-color: #33ce42;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    margin-left: 3px;
+    &:hover {
+        cursor: pointer;
+    }
+`;
+
+export const Delete = styled.div`
+    background-color: #fc4646;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    margin-left: 3px;
+    &:hover {
+        cursor: pointer;
+    }
 `;
