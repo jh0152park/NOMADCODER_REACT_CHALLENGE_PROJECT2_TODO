@@ -16,11 +16,6 @@ export interface ITodo {
     category: Categories;
 }
 
-export const CategoryState = atom<Categories>({
-    key: "category",
-    default: Categories.Todo,
-});
-
 export const TodoState = atom<ITodo[]>({
     key: "todo",
     default: [],
@@ -39,8 +34,23 @@ export const TodoSelector = selector({
 });
 
 // new own my struct
+export interface IActionItem {
+    id: number;
+    category: string;
+    actionItem: string;
+}
 
 export const ItemBoardState = atom({
     key: "allItemBoard",
     default: [Categories.Todo, Categories.Doing, Categories.Done],
+});
+
+export const CategoryState = atom<Categories>({
+    key: "category",
+    default: Categories.Todo,
+});
+
+export const ActionItemState = atom<IActionItem[]>({
+    key: "actionItemState",
+    default: [],
 });
