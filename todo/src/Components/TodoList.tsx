@@ -20,16 +20,16 @@ import { FormContainer } from "../Styles/CreateItemStyle";
 import CreateItem from "./CreateItem";
 
 function TodoList() {
-    const [todo, doing, done] = useRecoilValue(TodoSelector);
-    const [category, setCategory] = useRecoilState(CategoryState);
+    // const [todo, doing, done] = useRecoilValue(TodoSelector);
+    // const [category, setCategory] = useRecoilState(CategoryState);
+
+    // function onInput(event: React.FormEvent<HTMLSelectElement>) {
+    //     setCategory(event.currentTarget.value as any);
+    // }
+
+    // console.log(allItemBoard);
 
     const allItemBoard = useRecoilValue(ItemBoardState);
-
-    function onInput(event: React.FormEvent<HTMLSelectElement>) {
-        setCategory(event.currentTarget.value as any);
-    }
-
-    console.log(allItemBoard);
 
     return (
         // <div>

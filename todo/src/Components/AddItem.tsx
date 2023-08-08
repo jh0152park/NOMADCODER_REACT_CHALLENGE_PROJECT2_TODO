@@ -1,23 +1,42 @@
 import { useForm } from "react-hook-form";
 import { INewInput } from "./CreateItem";
 import { AddItemBoard, Form, Input } from "../Styles/CreateItemStyle";
-import { ItemBoardState } from "../GlobalConfig";
-import { useRecoilValue } from "recoil";
+import {
+    ActionItemState,
+    CategoryState,
+    IActionItem,
+    ItemBoardState,
+} from "../GlobalConfig";
+import { useRecoilState, useRecoilValue, useSetRecoilState } from "recoil";
 
 function AddItem({ display }: { display: number }) {
     const categories = useRecoilValue(ItemBoardState);
+    const [allActionItems, setAllActionItems] = useRecoilState(ActionItemState);
+    const [currentCategory, setCurrentCategory] = useRecoilState(CategoryState);
+
     const { register, handleSubmit, setValue } = useForm<INewInput>();
 
     function onAddItemSubmit(data: INewInput) {
-        console.log(data.item);
+        const newActionItem: string = data.item as string;
+        // console.log(data.item);
         setValue("item", "");
+        setAllActionItems((prev) => [
+            ...prev,
+            {
+                id: Date.now(),
+                category: currentCategory,
+                actionItem: newActionItem,
+            },
+        ]);
     }
 
-    //     <select value={category} onInput={onInput}>
-    //         <option value={Categories.Todo}>Todo</option>
-    //         <option value={Categories.Doing}>Doing</option>
-    //         <option value={Categories.Done}>Done</option>
-    //     </select>
+    function onInput(event: React.FormEvent<HTMLSelectElement>) {
+        // default is Todo
+        console.log(`selected category: ${event.currentTarget.value}`);
+        setCurrentCategory(event.currentTarget.value as any);
+    }
+
+    console.log(allActionItems);
 
     return (
         <>
@@ -37,9 +56,9 @@ function AddItem({ display }: { display: number }) {
                         placeholder="Please entre new action item"
                     ></Input>
 
-                    <select>
+                    <select onInput={onInput}>
                         {categories.map((category) => (
-                            <option>{category}</option>
+                            <option value={category}>{category}</option>
                         ))}
                     </select>
                 </Form>
