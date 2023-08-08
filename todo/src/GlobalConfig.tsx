@@ -37,3 +37,10 @@ export const TodoSelector = selector({
         ];
     },
 });
+
+// new own my struct
+
+export const ItemBoardState = atom({
+    key: "allItemBoard",
+    default: [Categories.Todo, Categories.Doing, Categories.Done],
+});

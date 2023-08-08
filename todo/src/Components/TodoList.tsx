@@ -2,6 +2,7 @@ import { useRecoilState, useRecoilValue } from "recoil";
 import {
     Categories,
     CategoryState,
+    ItemBoardState,
     TodoSelector,
     TodoState,
 } from "../GlobalConfig";
@@ -22,9 +23,13 @@ function TodoList() {
     const [todo, doing, done] = useRecoilValue(TodoSelector);
     const [category, setCategory] = useRecoilState(CategoryState);
 
+    const allItemBoard = useRecoilValue(ItemBoardState);
+
     function onInput(event: React.FormEvent<HTMLSelectElement>) {
         setCategory(event.currentTarget.value as any);
     }
+
+    console.log(allItemBoard);
 
     return (
         // <div>
@@ -66,7 +71,7 @@ function TodoList() {
         <>
             <CreateItem></CreateItem>
             <Container>
-                <TodoBox>
+                {/* <TodoBox>
                     <PostitTitle>Todo</PostitTitle>
                 </TodoBox>
                 <DoingBox>
@@ -74,7 +79,26 @@ function TodoList() {
                 </DoingBox>
                 <DoneBox>
                     <PostitTitle>Done</PostitTitle>
-                </DoneBox>
+                </DoneBox> */}
+                {allItemBoard.map((category) =>
+                    category === Categories.Todo ? (
+                        <TodoBox>
+                            <PostitTitle>{category}</PostitTitle>
+                        </TodoBox>
+                    ) : category === Categories.Doing ? (
+                        <DoingBox>
+                            <PostitTitle>{category}</PostitTitle>
+                        </DoingBox>
+                    ) : category === Categories.Done ? (
+                        <DoneBox>
+                            <PostitTitle>{category}</PostitTitle>
+                        </DoneBox>
+                    ) : (
+                        <NewBox>
+                            <PostitTitle>{category}</PostitTitle>
+                        </NewBox>
+                    )
+                )}
             </Container>
         </>
     );
