@@ -1,39 +1,12 @@
-import { atom, selector } from "recoil";
+import { atom } from "recoil";
+
+// new own my struct
 
 export enum Categories {
     "Todo" = "Todo",
     "Doing" = "Doing",
     "Done" = "Done",
 }
-
-export interface IForm {
-    todo: string;
-}
-
-export interface ITodo {
-    text: string;
-    id: number;
-    category: Categories;
-}
-
-export const TodoState = atom<ITodo[]>({
-    key: "todo",
-    default: [],
-});
-
-export const TodoSelector = selector({
-    key: "todoSelector",
-    get: ({ get }) => {
-        const allTodo = get(TodoState);
-        return [
-            allTodo.filter((todo) => todo.category === Categories.Todo),
-            allTodo.filter((todo) => todo.category === Categories.Doing),
-            allTodo.filter((todo) => todo.category === Categories.Done),
-        ];
-    },
-});
-
-// new own my struct
 export interface IActionItem {
     id: number;
     category: string;
