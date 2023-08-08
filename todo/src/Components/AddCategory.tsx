@@ -2,7 +2,7 @@ import { useForm } from "react-hook-form";
 import { INewInput } from "./CreateItem";
 import { useSetRecoilState } from "recoil";
 import { ItemBoardState } from "../GlobalConfig";
-import { AddCategoryBoard, Input } from "../Styles/CreateItemStyle";
+import { AddCategoryBoard, Form, Input } from "../Styles/CreateItemStyle";
 
 function AddCategory({ display }: { display: number }) {
     const setAllItemBoard = useSetRecoilState(ItemBoardState);
@@ -15,22 +15,25 @@ function AddCategory({ display }: { display: number }) {
     }
 
     return (
-        <AddCategoryBoard
-            style={{
-                opacity: display,
-            }}
-        >
-            <form onSubmit={handleSubmit(onCreateNewCategorySubmit)}>
-                <Input
-                    id="categoryInput"
-                    {...register("category", {
-                        required:
-                            "Please enter a new category what you want to add.",
-                    })}
-                    placeholder="Please entre new category name"
-                ></Input>
-            </form>
-        </AddCategoryBoard>
+        <>
+            <AddCategoryBoard
+                style={{
+                    opacity: display,
+                    zIndex: display ? 99 : 0,
+                }}
+            >
+                <Form onSubmit={handleSubmit(onCreateNewCategorySubmit)}>
+                    <Input
+                        id="categoryInput"
+                        {...register("category", {
+                            required:
+                                "Please enter a new category what you want to add.",
+                        })}
+                        placeholder="Please entre new category name"
+                    ></Input>
+                </Form>
+            </AddCategoryBoard>
+        </>
     );
 }
 

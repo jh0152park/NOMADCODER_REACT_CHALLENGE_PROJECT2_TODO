@@ -23,6 +23,13 @@ export const CreateButton = styled.p`
     }
 `;
 
+export const Form = styled.form`
+    position: relative;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+`;
+
 export const AddCategoryBoard = styled.div`
     width: 400px;
     height: 50px;
@@ -49,11 +56,12 @@ export const Input = styled.input`
     border: none;
     border-radius: 15px;
     padding: 10px 20px;
-    width: 400px;
+    width: 380px;
     height: 40px;
     background-color: inherit;
     color: white;
     font-size: 12px;
+    margin-right: 5px;
 
     &::placeholder {
         color: white;
