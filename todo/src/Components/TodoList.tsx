@@ -72,38 +72,12 @@ function TodoList() {
         <>
             <CreateItem></CreateItem>
             <Container>
-                {/* <TodoBox>
-                    <PostitTitle>Todo</PostitTitle>
-                </TodoBox>
-                <DoingBox>
-                    <PostitTitle>Doing</PostitTitle>
-                </DoingBox>
-                <DoneBox>
-                    <PostitTitle>Done</PostitTitle>
-                </DoneBox> */}
-                {allItemBoard.map((category) =>
-                    category === Categories.Todo ? (
-                        <TodoBox>
-                            <PostitTitle>{category}</PostitTitle>
-                            <ActionItem category={category}></ActionItem>
-                        </TodoBox>
-                    ) : category === Categories.Doing ? (
-                        <DoingBox>
-                            <PostitTitle>{category}</PostitTitle>
-                            <ActionItem category={category}></ActionItem>
-                        </DoingBox>
-                    ) : category === Categories.Done ? (
-                        <DoneBox>
-                            <PostitTitle>{category}</PostitTitle>
-                            <ActionItem category={category}></ActionItem>
-                        </DoneBox>
-                    ) : (
-                        <NewBox>
-                            <PostitTitle>{category}</PostitTitle>
-                            <ActionItem category={category}></ActionItem>
-                        </NewBox>
-                    )
-                )}
+                {allItemBoard.map((category) => (
+                    <NewBox category={category}>
+                        <PostitTitle>{category}</PostitTitle>
+                        <ActionItem category={category}></ActionItem>
+                    </NewBox>
+                ))}
             </Container>
         </>
     );

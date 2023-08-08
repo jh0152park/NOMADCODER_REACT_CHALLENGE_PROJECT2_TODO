@@ -31,3 +31,12 @@ export const Delete = styled.div`
         cursor: pointer;
     }
 `;
+
+export const CategoriesList = styled.div`
+    background-color: rgba(0, 0, 0, 0.8);
+    width: 100px;
+    position: absolute;
+    border-radius: 10px;
+    padding: 5px;
+    color: whitesmoke;
+`;

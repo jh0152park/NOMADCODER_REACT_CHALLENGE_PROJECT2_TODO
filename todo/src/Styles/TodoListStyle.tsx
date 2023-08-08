@@ -1,4 +1,5 @@
 import { styled } from "styled-components";
+import { Categories } from "../GlobalConfig";
 
 export const Container = styled.div`
     width: 100%;
@@ -38,13 +39,21 @@ export const DoneBox = styled.div`
     color: black;
 `;
 
-export const NewBox = styled.div`
+export const NewBox = styled.div<{ category: string }>`
     width: 300px;
     min-height: 300px;
     overflow: hidden;
     box-sizing: border-box;
-    background-color: #ede2a8;
     color: black;
+    /* background-color: #ede2a8; */
+    background-color: ${(props) =>
+        props.category === Categories.Todo
+            ? "#d6de72"
+            : props.category === Categories.Doing
+            ? "#a3d2c5"
+            : props.category === Categories.Done
+            ? "#ef91b0"
+            : "#ede2a8"};
 `;
 
 export const PostitTitle = styled.p`

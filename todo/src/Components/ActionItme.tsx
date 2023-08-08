@@ -1,8 +1,19 @@
 import { useRecoilState, useRecoilValue } from "recoil";
-import { Delete, Item, Items, Move } from "../Styles/ActionItemStyle";
-import { ActionItemState } from "../GlobalConfig";
+import {
+    CategoriesList,
+    Delete,
+    Item,
+    Items,
+    Move,
+} from "../Styles/ActionItemStyle";
+import {
+    ActionItemState,
+    CategoryState,
+    ItemBoardState,
+} from "../GlobalConfig";
 
 function ActionItem({ category }: { category: string }) {
+    const categories = useRecoilValue(ItemBoardState);
     const [allActionItems, setAllActionItems] = useRecoilState(ActionItemState);
     const categoryActionItems = allActionItems.filter(
         (item) => item.category === category
@@ -19,7 +30,13 @@ function ActionItem({ category }: { category: string }) {
             {categoryActionItems.map((item) => (
                 <Item key={item.id}>
                     {item.actionItem}
-                    <Move></Move>
+                    <Move>
+                        <CategoriesList>
+                            {categories.map((category) => (
+                                <p>{category}</p>
+                            ))}
+                        </CategoriesList>
+                    </Move>
                     <Delete onClick={() => DeleteActionItem(item.id)}></Delete>
                 </Item>
             ))}
