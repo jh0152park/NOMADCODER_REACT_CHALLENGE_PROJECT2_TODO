@@ -1,6 +1,7 @@
 import { useRecoilState, useRecoilValue } from "recoil";
 import {
     CategoriesList,
+    Container,
     Delete,
     Item,
     Items,
@@ -36,21 +37,25 @@ function ActionItem({ category }: { category: string }) {
     }
 
     return (
-        <Items>
-            {categoryActionItems.map((item) => (
-                <Item key={item.id}>
-                    {item.actionItem}
-                    <Move
-                        onClick={() => onCategoryChageButtonClick(item.id)}
-                    ></Move>
-                    <Delete onClick={() => DeleteActionItem(item.id)}></Delete>
-                    <ChangeCategory
-                        id={item.id as number}
-                        display={item.showCategoriesBoard}
-                    ></ChangeCategory>
-                </Item>
-            ))}
-        </Items>
+        <Container>
+            <Items>
+                {categoryActionItems.map((item) => (
+                    <Item key={item.id}>
+                        {item.actionItem}
+                        <Move
+                            onClick={() => onCategoryChageButtonClick(item.id)}
+                        ></Move>
+                        <Delete
+                            onClick={() => DeleteActionItem(item.id)}
+                        ></Delete>
+                        <ChangeCategory
+                            id={item.id as number}
+                            display={item.showCategoriesBoard}
+                        ></ChangeCategory>
+                    </Item>
+                ))}
+            </Items>
+        </Container>
     );
 }
 
