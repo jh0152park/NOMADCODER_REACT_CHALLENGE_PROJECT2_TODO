@@ -23,6 +23,10 @@ export const CreateButton = styled.p`
     }
 `;
 
+export const Form = styled.form`
+    position: relative;
+`;
+
 export const AddCategoryBoard = styled.div`
     width: 400px;
     height: 50px;
