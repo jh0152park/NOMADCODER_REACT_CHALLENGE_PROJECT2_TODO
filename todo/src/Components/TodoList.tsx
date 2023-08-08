@@ -18,6 +18,7 @@ import {
 } from "../Styles/TodoListStyle";
 import { FormContainer } from "../Styles/CreateItemStyle";
 import CreateItem from "./CreateItem";
+import ActionItem from "./ActionItme";
 
 function TodoList() {
     // const [todo, doing, done] = useRecoilValue(TodoSelector);
@@ -84,18 +85,22 @@ function TodoList() {
                     category === Categories.Todo ? (
                         <TodoBox>
                             <PostitTitle>{category}</PostitTitle>
+                            <ActionItem category={category}></ActionItem>
                         </TodoBox>
                     ) : category === Categories.Doing ? (
                         <DoingBox>
                             <PostitTitle>{category}</PostitTitle>
+                            <ActionItem category={category}></ActionItem>
                         </DoingBox>
                     ) : category === Categories.Done ? (
                         <DoneBox>
                             <PostitTitle>{category}</PostitTitle>
+                            <ActionItem category={category}></ActionItem>
                         </DoneBox>
                     ) : (
                         <NewBox>
                             <PostitTitle>{category}</PostitTitle>
+                            <ActionItem category={category}></ActionItem>
                         </NewBox>
                     )
                 )}
