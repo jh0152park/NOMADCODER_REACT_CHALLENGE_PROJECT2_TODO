@@ -38,6 +38,7 @@ export interface IActionItem {
     id: number;
     category: string;
     actionItem: string;
+    showCategoriesBoard: number;
 }
 
 export const ItemBoardState = atom({

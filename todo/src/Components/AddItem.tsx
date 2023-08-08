@@ -26,6 +26,7 @@ function AddItem({ display }: { display: number }) {
                 id: Date.now(),
                 category: currentCategory,
                 actionItem: newActionItem,
+                showCategoriesBoard: 0,
             },
         ]);
     }
