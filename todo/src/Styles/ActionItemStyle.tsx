@@ -32,11 +32,15 @@ export const Delete = styled.div`
     }
 `;
 
-export const CategoriesList = styled.div`
+export const CategoriesList = styled.div<{ display: number }>`
     background-color: rgba(0, 0, 0, 0.8);
     width: 100px;
-    position: absolute;
     border-radius: 10px;
     padding: 5px;
     color: whitesmoke;
+    margin-left: 3px;
+    opacity: ${(props) => props.display};
+    transition: opacity 0.2s linear;
+    position: absolute;
+    right: 0;
 `;
