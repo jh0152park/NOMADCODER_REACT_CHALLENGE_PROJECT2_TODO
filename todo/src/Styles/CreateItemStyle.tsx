@@ -5,13 +5,15 @@ export const FormContainer = styled.div`
     padding-left: 20px;
     position: fixed;
     width: 100%;
-    height: 10vh;
+    height: 20vh;
+    /* background-color: rgba(255, 255, 255, 0.5); */
 `;
 
 export const CreateButton = styled.p`
     font-size: 30px;
     font-weight: bold;
     margin-bottom: 10px;
+    width: 350px;
     &:hover {
         scale: 1.1;
         cursor: pointer;
@@ -29,6 +31,18 @@ export const AddCategoryBoard = styled.div`
     display: flex;
     justify-content: flex-start;
     align-items: center;
+    position: absolute;
+`;
+
+export const AddItemBoard = styled.div`
+    width: 450px;
+    height: 50px;
+    border-radius: 15px;
+    background-color: rgba(255, 255, 255, 0.2);
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    position: absolute;
 `;
 
 export const Input = styled.input`

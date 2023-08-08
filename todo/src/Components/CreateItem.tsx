@@ -1,6 +1,7 @@
 import { useForm } from "react-hook-form";
 import {
     AddCategoryBoard,
+    AddItemBoard,
     CreateButton,
     FormContainer,
     Input,
@@ -8,57 +9,75 @@ import {
 import { useState } from "react";
 import { useSetRecoilState } from "recoil";
 import { ItemBoardState } from "../GlobalConfig";
+import AddCategory from "./AddCategory";
+import AddItem from "./AddItem";
 
-interface INewCategory {
-    category: string;
+export interface INewInput {
+    category?: string;
+    item?: string;
 }
 
 function CreateItem() {
+    const [itemBoardDisplay, setItemBoardDisplay] = useState(0);
     const [categoryBoardDisplay, setCategoryBoardDisplay] = useState(0);
 
-    const setAllItemBoard = useSetRecoilState(ItemBoardState);
-
-    const { register, handleSubmit, setValue } = useForm<INewCategory>();
-
     function onCreateNewCategoryButtonClick() {
+        // when already opened the "AddItemBoard", category board will be not showun
+        if (itemBoardDisplay) return;
+
         console.log("create new category button");
         setCategoryBoardDisplay((prev) => (prev ? 0 : 1));
     }
 
     function onAddNewActionItemButtonClick() {
+        // when already opened the "AddCategoryboard", item board will be not showun
+        if (categoryBoardDisplay) return;
+
         console.log("add new action item button");
+        setItemBoardDisplay((prev) => (prev ? 0 : 1));
     }
 
-    function onCreateNewCategorySubmit(data: INewCategory) {
-        console.log(data.category);
-        setValue("category", "");
-        setAllItemBoard((prev) => [...prev, data.category as any]);
+    function closeInputBoard(
+        event: React.MouseEvent<HTMLDivElement, MouseEvent>
+    ) {
+        const CategoryBox = document.getElementById("categoryBoard");
+        const ItemBox = document.getElementById("itemBoard");
+        const CategoryInput = document.getElementById("categoryInput");
+        const ItemInput = document.getElementById("itemInput");
+        const target = event.target;
+
+        switch (target) {
+            case CategoryBox:
+            case ItemBox:
+            case CategoryInput:
+            case ItemInput:
+                console.log("Things clicked");
+                break;
+            default:
+                console.log("out sitde clicked");
+                setItemBoardDisplay(0);
+                setCategoryBoardDisplay(0);
+                break;
+        }
     }
 
     return (
-        <FormContainer>
-            <CreateButton onClick={onCreateNewCategoryButtonClick}>
+        <FormContainer onClick={(e) => closeInputBoard(e)}>
+            <CreateButton
+                id="categoryBoard"
+                onClick={onCreateNewCategoryButtonClick}
+            >
                 + Create New Category
             </CreateButton>
-            <CreateButton onClick={onAddNewActionItemButtonClick}>
+            <CreateButton
+                id="itemBoard"
+                onClick={onAddNewActionItemButtonClick}
+            >
                 + Add New Action Item
             </CreateButton>
 
-            <AddCategoryBoard
-                style={{
-                    opacity: categoryBoardDisplay,
-                }}
-            >
-                <form onSubmit={handleSubmit(onCreateNewCategorySubmit)}>
-                    <Input
-                        {...register("category", {
-                            required:
-                                "Please enter a new category what you want to add.",
-                        })}
-                        placeholder="Please entre new category name"
-                    ></Input>
-                </form>
-            </AddCategoryBoard>
+            <AddCategory display={categoryBoardDisplay}></AddCategory>
+            <AddItem display={itemBoardDisplay}></AddItem>
         </FormContainer>
     );
 }

@@ -7,6 +7,8 @@ export const Container = styled.div`
     justify-content: center;
     align-items: center;
     gap: 10px;
+    box-sizing: border-box;
+    overflow: hidden;
 `;
 
 export const TodoBox = styled.div`
