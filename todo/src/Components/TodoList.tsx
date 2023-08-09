@@ -12,6 +12,7 @@ import {
 
 import CreateItem from "./CreateItem";
 import ActionItem from "./ActionItme";
+import DeleteBoard from "./DeleteBoard";
 
 function TodoList() {
     const allItemBoard = useRecoilValue(ItemBoardState);
@@ -22,7 +23,10 @@ function TodoList() {
             <Container>
                 {allItemBoard.map((category) => (
                     <NewBox category={category}>
-                        <PostitTitle>{category}</PostitTitle>
+                        <PostitTitle>
+                            {category}
+                            <DeleteBoard category={category}></DeleteBoard>
+                        </PostitTitle>
                         <ActionItem category={category}></ActionItem>
                     </NewBox>
                 ))}
