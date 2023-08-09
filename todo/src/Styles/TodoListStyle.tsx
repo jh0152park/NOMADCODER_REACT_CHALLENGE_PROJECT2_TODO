@@ -56,9 +56,13 @@ export const NewBox = styled.div<{ category: string }>`
             : "#ede2a8"};
 `;
 
-export const PostitTitle = styled.p`
+export const PostitTitle = styled.div`
     color: black;
     font-size: 20px;
     font-weight: bold;
     margin: 5px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding-right: 10px;
 `;
